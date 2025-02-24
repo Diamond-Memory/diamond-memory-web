@@ -1,5 +1,8 @@
 import React from 'react';
 import './index.css';
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Home from "./Home/Home";
+import Products from "./Products/Products";
 
 function App() {
   const openMenu = () => {
@@ -9,12 +12,14 @@ function App() {
     document.querySelector(".sidebar")?.classList.remove("open");
   }
 
+
   return (
+    <Router>
     <div className="grid-container">
-    <head>
+        
         <link rel="stylesheet" href="style.css" />
         <title>Diamond Memory</title>
-    </head>
+
     <body>
         <div>
             <header className="header">
@@ -23,8 +28,8 @@ function App() {
                 <a href="index.html">Diamond Memory</a>
             </div>
             <div className="header-links">
-              {/* <Link to="/">Home</Link>
-              <Link to="/catalog">Catalog</Link> */}
+              <Link to="/">Home</Link>
+              <Link to="/catalog"> Catalog</Link>
               </div>
             </header>
             <aside className="sidebar">
@@ -39,7 +44,12 @@ function App() {
                     </li>
                 </ul>
             </aside>
-            <main>
+            <main className= "main">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/catalog" element={<Products />} />
+                </Routes>
+                </main>
                 <div className="content">
                     <ul className="products">
                         <li>
@@ -99,13 +109,14 @@ function App() {
                         </li>
                     </ul>
                 </div>
-            </main>
+
             <footer>
                 &copy; 2022 Diamond Memory
             </footer>
         </div>
     </body>
 </div>
+</Router>
   );
 }
 
