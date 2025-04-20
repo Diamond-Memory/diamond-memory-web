@@ -1,10 +1,9 @@
-import data from "./data";
+import Orders from "./Orders"; // Assuming OrdersData is the correct file exporting an array of orders
 import { useParams } from "react-router-dom";
-
 
 function OrderDetail() {
     const { id } = useParams<{ id: string }>();
-    const order = data.orders.find((o) => o._id == parseInt(id as string));
+    const order = Orders.find((o) => o._id === parseInt(id as string, 10)); // Added radix for parseInt
 
     return (
         <div>
